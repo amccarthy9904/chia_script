@@ -6,8 +6,9 @@ class Prepper:
     plot = None
     farm = None
     dirs = {}
+    trash_dir = "/media/lron/plot1/.Trash-1000"
     
-    def __init__(self, farm, plot):
+    def __init__(self, plot, farm):
         self.plot = plot
         self.farm = farm
         
@@ -18,7 +19,10 @@ class Prepper:
         farm = "/media/lron/farm1/f" + self.farm + "." + self.plot
         
         self.dirs = {"r" : root, "t1" : tst1, "t2" : tst2, "f": farm}
-        self.clean(True)
+        try:
+            self.clean(True)
+        except:
+            pass
         
         os.mkdir(root)
         os.mkdir(tst1)
@@ -28,6 +32,11 @@ class Prepper:
         
         
     def clean(self, clean_farm = False):
+        
         shutil.rmtree(self.dirs["r"])
         if clean_farm:
             shutil.rmtree(self.dirs["f"])
+        try:
+            shutil.rmtree(self.trash_dir)
+        except:
+            pass
