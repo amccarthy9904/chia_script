@@ -25,10 +25,14 @@ def plot_thread():
             
     # write to new props file, or look into configparser
     props = {"n":props[0], "k":props[1], "b":props[2], "f":props[3]}
+    
     print(props)
+    
     prep = Prepper(props["n"], props["f"])
     dirs = prep.prep()
+    
     print(dirs)
+    
     plot = Plotter(props["k"], props["b"], dirs)
     plot.start()
     
@@ -36,6 +40,16 @@ def plot_thread():
 
 
 if __name__ == "__main__":
-    print("ASDASD")
+    
+    # TODO 
+    # make start_chia bash script
+    #   cd to chia dir
+    #   . ./activate
+    #   chia start -r all
+    #   restarts all chia parts
+    #       can maybe not run all chia parts
+    #       better if we can see what isnt running
+    #       and start stopped things
+    #    
     plot_thread()
 
